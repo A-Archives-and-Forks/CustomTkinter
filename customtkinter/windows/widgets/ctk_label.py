@@ -48,7 +48,14 @@ class CTkLabel(CTkBaseClass):
 
         # color
         self._fg_color = ThemeManager.theme["CTkLabel"]["fg_color"] if fg_color is None else self._check_color_type(fg_color, transparency=True)
-        self._border_color: Union[str, Tuple[str, str]] = ThemeManager.theme["CTkLabel"]["border_color"] if border_color is None else self._check_color_type(border_color)
+        if border_color is None:
+            # fall back gracefully for older custom themes that predate CTkLabel border support
+            if "border_color" in ThemeManager.theme["CTkLabel"]:
+                self._border_color = ThemeManager.theme["CTkLabel"]["border_color"]
+            else:
+                self._border_color = ["#979DA2", "#565B5E"]
+        else:
+            self._border_color = self._check_color_type(border_color)
         self._text_color = ThemeManager.theme["CTkLabel"]["text_color"] if text_color is None else self._check_color_type(text_color)
 
         if text_color_disabled is None:
@@ -61,7 +68,14 @@ class CTkLabel(CTkBaseClass):
 
         # shape
         self._corner_radius = ThemeManager.theme["CTkLabel"]["corner_radius"] if corner_radius is None else corner_radius
-        self._border_width: int = ThemeManager.theme["CTkLabel"]["border_width"] if border_width is None else border_width
+        if border_width is None:
+            # fall back gracefully for older custom themes that predate CTkLabel border support
+            if "border_width" in ThemeManager.theme["CTkLabel"]:
+                self._border_width = ThemeManager.theme["CTkLabel"]["border_width"]
+            else:
+                self._border_width = 0
+        else:
+            self._border_width = border_width
 
         # text
         self._anchor = anchor
