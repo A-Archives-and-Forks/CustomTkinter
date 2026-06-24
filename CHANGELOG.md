@@ -10,7 +10,7 @@ ToDo:
  - set icon (self.call("wm", "iconphoto", self._w, tkinter.PhotoImage(file="test_images/CustomTkinter_logo_single.png")))
  - add option to change label position for checkbox, switch, radiobutton #628
 
-## [5.3.0] - 2026-01-21
+## [6.0.0] - 2026-01-21
 ### Added
  - Showroom App, immediately available with the library installation
  - Gold theme
@@ -30,6 +30,7 @@ ToDo:
  - Properly managed borders for CTkScrollableFrame
  - Fixed a bug that prevented setting a custom Icon for CTkToplevel
  - Fixed many bugs related to missing invocations or wrong names
+ - Widgets on CTkScrollableFrame get scrolled properly when the mouse is over them and the mouse wheel is used
 
 ## [5.2.0] - 2022-05-02
 ### Added
